@@ -1,1 +1,150 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weihnachtsgruß</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        .page1 {
+            background: linear-gradient(to bottom, #003973, #E5E5BE);
+            color: white;
+            text-align: center;
+        }
+
+        .page2 {
+            background: #000;
+            color: white;
+        }
+
+        .page3 {
+            background: #F7F7F7;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1em;
+            top: -10%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(120vh);
+            }
+        }
+
+        button {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .opera-image {
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .tickets {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .ticket {
+            border: 2px dashed black;
+            padding: 20px;
+            margin: 10px;
+            width: 80%;
+            text-align: center;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="page page1">
+        <div>
+            <h1>Frohe Weihnachten, meine Liebste!</h1>
+            <p>Du bist das Beste, was mir je passiert ist. Ich liebe dich von ganzem Herzen!</p>
+        </div>
+        <button onclick="nextPage()">Weiter</button>
+        <audio autoplay loop>
+            <source src="weihnachtsmusik.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div id="snowflakes"></div>
+    </div>
+
+    <div class="page page2" style="display: none;">
+        <img src="opera.jpg" alt="Opera House" class="opera-image">
+        <button onclick="nextPage()">Weiter</button>
+    </div>
+
+    <div class="page page3" style="display: none;">
+        <div class="tickets">
+            <h2>Operntickets</h2>
+            <div class="ticket">Ticket 1: VIP Sitzplatz</div>
+            <div class="ticket">Ticket 2: VIP Sitzplatz</div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+
+        function nextPage() {
+            pages[currentPage].style.display = 'none';
+            currentPage++;
+            if (currentPage < pages.length) {
+                pages[currentPage].style.display = 'flex';
+            }
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+            document.getElementById('snowflakes').appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+    </script>
+</body>
+</html>
