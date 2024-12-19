@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +30,8 @@
         .page2 {
             background: #000;
             color: white;
+            text-align: center;
+            flex-direction: column;
         }
 
         .page3 {
@@ -54,9 +57,14 @@
             }
         }
 
-        button {
+        .button-container {
             position: absolute;
             bottom: 20px;
+            display: flex;
+            gap: 60px;
+        }
+
+        button {
             padding: 10px 20px;
             font-size: 18px;
             background: #007BFF;
@@ -89,15 +97,24 @@
             text-align: center;
             background: white;
         }
+
+        .riddle {
+            margin: 20px 0;
+            font-size: 24px;
+        }
     </style>
 </head>
+
 <body>
     <div class="page page1">
         <div>
-            <h1>Frohe Weihnachten, meine Liebste!</h1>
-            <p>Du bist das Beste, was mir je passiert ist. Ich liebe dich von ganzem Herzen!</p>
+            <h1>Frohe Weihnachten, Goldie!</h1>
+            <p>Ich habe noch eine kleine Überraschung für Dich! Bin gespannt, ob du es errätst.</p>
         </div>
-        <button onclick="nextPage()">Weiter</button>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
         <audio autoplay loop>
             <source src="weihnachtsmusik.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -106,15 +123,103 @@
     </div>
 
     <div class="page page2" style="display: none;">
-        <img src="opera.jpg" alt="Opera House" class="opera-image">
-        <button onclick="nextPage()">Weiter</button>
+        <div>
+            <p class="riddle">Rätsel:</p>
+            <p class="riddle">"Ich fließe durch viele Städte, mein Wasser ist klar. Ich bin einer der längsten Flüsse
+                Europas. Wie heiße ich?"
+            </p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
     </div>
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <p class="riddle">Rätsel:</p>
+            <p class="riddle"> "Ich fließe durch viele Städte, mein Wasser ist klar. Ich bin einer der längsten Flüsse
+                Europas. Wie heiße ich?"
+            </p>
+            <p class="riddle">Lösung: Rhein</p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <img src="RichardWagner.jpg" alt="Opera House" class="opera-image">
+            <p class="riddle">Die Musik stammt von diesem Komponist</p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <img src="RichardWagner.jpg" alt="Opera House" class="opera-image">
+            <p class="riddle">Richard Wagner</p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <p class="riddle">Rätsel: </p>
+            <p class="riddle">"Es ist wertvoll, doch in falschen Händen bringt es Macht und Verderben. Ich werde
+                geschmiedet, doch nie zerbrechen. Was bin ich?"
+            </p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <p class="riddle">Rätsel: </p>
+            <p class="riddle">"Es ist wertvoll, doch in falschen Händen bringt es Macht und Verderben. Ich werde
+                geschmiedet, doch nie zerbrechen. Was bin ich?"
+            </p>
+            <p class="riddle">Lösung: Gold</p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
+
+
+    <div class="page page2" style="display: none;">
+        <div>
+            <img src="oper_leipzig_opernhaus_foto_kirsten_nijhof.jpg" alt="Opera House" class="opera-image">
+            <p class="riddle">Es findet an diesem Ort statt!</p>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
+            <button onclick="nextPage()">Weiter</button>
+        </div>
+    </div>
+
 
     <div class="page page3" style="display: none;">
         <div class="tickets">
             <h2>Operntickets</h2>
             <div class="ticket">Ticket 1: VIP Sitzplatz</div>
             <div class="ticket">Ticket 2: VIP Sitzplatz</div>
+        </div>
+        <div class="button-container">
+            <button onclick="previousPage()">Zurück</button>
         </div>
     </div>
 
@@ -123,9 +228,17 @@
         const pages = document.querySelectorAll('.page');
 
         function nextPage() {
-            pages[currentPage].style.display = 'none';
-            currentPage++;
-            if (currentPage < pages.length) {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].style.display = 'none';
+                currentPage++;
+                pages[currentPage].style.display = 'flex';
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                pages[currentPage].style.display = 'none';
+                currentPage--;
                 pages[currentPage].style.display = 'flex';
             }
         }
@@ -147,4 +260,5 @@
         setInterval(createSnowflake, 100);
     </script>
 </body>
+
 </html>
